@@ -11,32 +11,32 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_category")
-public class Category implements Serializable{
+public class Category implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	
+
 	@JsonIgnore
-	@OneToMany
+	@ManyToMany(mappedBy = "categories")
 	private Set<Product> products = new HashSet<>();
-	
+
 	public Category() {
-		
+
 	}
-	
+
 	public Category(Long id, String name) {
 		this.id = id;
 		this.name = name;
 	}
-	
+
 	public long getId() {
 		return id;
 	}
@@ -78,14 +78,5 @@ public class Category implements Serializable{
 	public String toString() {
 		return "Category [id=" + id + ", name=" + name + ", products=" + products + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
