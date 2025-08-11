@@ -1,9 +1,9 @@
 package com.joaovitorlouzada.course.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -26,7 +26,7 @@ public class Category implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany
-	private List<Product> products = new ArrayList<>();
+	private Set<Product> products = new HashSet<>();
 	
 	public Category() {
 		
@@ -36,13 +36,7 @@ public class Category implements Serializable{
 		this.id = id;
 		this.name = name;
 	}
-
-	public Category(Long id, String name, List<Product> products) {
-		this.id = id;
-		this.name = name;
-		this.products = products;
-	}
-
+	
 	public long getId() {
 		return id;
 	}
@@ -59,7 +53,7 @@ public class Category implements Serializable{
 		this.name = name;
 	}
 
-	public List<Product> getProducts() {
+	public Set<Product> getProducts() {
 		return products;
 	}
 
